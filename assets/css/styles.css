@@ -452,3 +452,10 @@ html.dark .contact-container label {
 .stay-blue {
   color: var(--accent) !important;
 }
+<div class="thank-you-overlay" id="thankYouOverlay">
+  <div class="thank-you-box">
+    <h1>Thank you for your message! 🙏</h1>
+    <p>I’ll get back to you soon.<br>You’ll be redirected back in <span id="countdown">20</span> seconds.</p>
+  </div>
+</div>
+}
