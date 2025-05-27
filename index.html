@@ -24,7 +24,7 @@
 
     .navbar {
       position: relative;
-      z-index: 10; /* ✅ Keeps navbar above everything */
+      z-index: 10; /* keeps navbar above everything */
     }
 
     .landing {
@@ -34,8 +34,10 @@
       align-items: center;
       flex-direction: column;
       padding: 2rem;
-      padding-top: 120px; /* ✅ Pushes landing content lower without breaking layout */
+      padding-top: 0; /* removes space above card */
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     .landing h1 {
@@ -105,7 +107,9 @@
     <section class="landing">
       <h1>Welcome to my Digital Gateway</h1>
       <p>
-        You've arrived at a curated platform built to showcase depth, skill, and innovation. As you explore, you’ll uncover a streamlined journey through professional highlights, technical showcases, and creative solutions—all tailored to leave a lasting impression.
+        You've arrived at a curated platform built to showcase depth, skill, and innovation.
+        As you explore, you’ll uncover a streamlined journey through professional highlights,
+        technical showcases, and creative solutions—all tailored to leave a lasting impression.
       </p>
       <a href="html/about.html" class="btn-start">Explore More</a>
     </section>
