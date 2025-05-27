@@ -94,7 +94,7 @@
       font-size: 0.9rem;
       z-index: 9999;
       display: none;
-      transition: background-color 0.2s ease;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
 
     .flash-white {
@@ -161,7 +161,7 @@
     <p>&copy; 2025 Christian Melendez. All rights reserved.</p>
   </footer>
 
-  <!-- Bubbles -->
+  <!-- Pop-up Bubbles -->
   <div id="bubbleLogo" class="bubble-popup" style="top: 20px;">
     <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
     <p><strong>Logo:</strong> Click to return to this home page.</p>
@@ -188,28 +188,23 @@
   </div>
 
   <script>
-    function flashWhite(id, delay) {
+    function flashWhiteOnce(id, delay) {
       const el = document.getElementById(id);
       setTimeout(() => {
         el.style.display = 'block';
-        let flashes = 0;
-        const flashInterval = setInterval(() => {
-          el.classList.toggle('flash-white');
-          flashes++;
-          if (flashes >= 10) {
-            clearInterval(flashInterval);
-            el.classList.remove('flash-white');
-          }
+        el.classList.add('flash-white');
+        setTimeout(() => {
+          el.classList.remove('flash-white');
         }, 300);
       }, delay);
     }
 
     window.onload = () => {
-      flashWhite('bubbleLogo', 1000);
-      flashWhite('bubbleAbout', 2000);
-      flashWhite('bubblePortfolio', 3000);
-      flashWhite('bubbleResume', 4000);
-      flashWhite('bubbleContact', 5000);
+      flashWhiteOnce('bubbleLogo', 1000);
+      flashWhiteOnce('bubbleAbout', 2000);
+      flashWhiteOnce('bubblePortfolio', 3000);
+      flashWhiteOnce('bubbleResume', 4000);
+      flashWhiteOnce('bubbleContact', 5000);
     };
   </script>
 </body>
