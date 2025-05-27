@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Christian Melendez</title>
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <script defer src="../assets/js/script.js"></script>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <!-- ✅ Clickable logo that goes to homepage -->
+        <a href="../index.html" aria-label="Home">
+          <img src="../assets/img/cdmc.png" alt="CDMC Logo" />
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="about-card">
+      <img src="../assets/img/resumephoto.png" alt="Christian Melendez" />
+      <h2>Christian D. Melendez</h2>
+      <p>
+        Hi there! I'm Christian, a tech-savvy problem solver with a passion for turning chaos into clean, efficient systems.
+        From coding in Python and C# to fixing a school’s tech infrastructure on the fly, I thrive when there’s a challenge
+        to meet and a solution to build. I believe tech should empower people — and I’m here to make that happen, one solved issue at a time.
+      </p>
+      <a href="resume.html" class="btn">📄 View Full Résumé</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="socials">
+      <a href="#"><img src="../assets/img/x-icon.svg" alt="X.com"></a>
+      <a href="#"><img src="../assets/img/linkedin.svg" alt="LinkedIn"></a>
+      <a href="#"><img src="../assets/img/github.svg" alt="GitHub"></a>
+    </div>
+    <p>&copy; 2025 Christian Melendez. All rights reserved.</p>
+  </footer>
+</body>
+</html>

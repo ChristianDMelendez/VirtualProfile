@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome | Digital Profile Hub</title>
+
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script defer src="assets/js/script.js"></script>
+  <style>
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .landing {
+      min-height: calc(100vh - 120px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .landing h1 {
+      font-size: 2.6rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .landing p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      line-height: 1.8;
+    }
+
+    .btn-start {
+      margin-top: 2rem;
+      background-color: var(--accent);
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-start:hover {
+      background-color: #005f99;
+    }
+
+    @media (max-width: 768px) {
+      .landing h1 {
+        font-size: 2rem;
+      }
+
+      .landing p {
+        font-size: 1rem;
+      }
+    }
+
+    html.dark .landing {
+      background-color: var(--dark-bg);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="assets/img/cdmc.png" alt="CDMC Logo" style="height: 96px;" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="html/about.html">About</a></li>
+        <li><a href="html/portfolio.html">Portfolio</a></li>
+        <li><a href="html/resume.html">Resume</a></li>
+        <li><a href="html/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="dark-toggle-wrapper">
+      <button id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="landing">
+      <h1>Welcome to my Digital Gateway</h1>
+      <p>
+        You've arrived at a curated platform built to showcase depth, skill, and innovation. As you explore, you’ll uncover a streamlined journey through professional highlights, technical showcases, and creative solutions—all tailored to leave a lasting impression.
+      </p>
+      <a href="html/about.html" class="btn-start">Explore More</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="socials">
+      <a href="#"><img src="assets/img/x-icon.svg" alt="X.com"></a>
+      <a href="#"><img src="assets/img/linkedin.svg" alt="LinkedIn"></a>
+      <a href="#"><img src="assets/img/github.svg" alt="GitHub"></a>
+    </div>
+    <p>&copy; 2025 Christian Melendez. All rights reserved.</p>
+  </footer>
+</body>
+</html>

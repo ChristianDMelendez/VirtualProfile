@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Résumé | Christian Melendez</title>
+
+  <!-- Instantly apply dark mode on load -->
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <script defer src="../assets/js/script.js"></script>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="../index.html">
+          <img src="../assets/img/cdmc.png" alt="CDMC Logo" style="height: 96px;" />
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="resume.html" class="active">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- ✅ Toggle aligned to right side of screen -->
+    <div class="dark-toggle-wrapper">
+      <button id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="text-area">
+          <h1 id="typewriter">I build digital solutions that solve real business problems.</h1>
+          <p class="fade-up">Let me show you what I bring to the table.</p>
+          <a href="../assets/Resume_ChristianMelendez.pdf" class="btn" download>Download Resume</a>
+        </div>
+        <div class="image-area">
+          <img src="../assets/img/resumephoto.png" alt="Christian Melendez" />
+          <div class="name-tag">Christian Melendez</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="socials">
+      <a href="#"><img src="../assets/img/x-icon.svg" alt="X.com"></a>
+      <a href="#"><img src="../assets/img/linkedin.svg" alt="LinkedIn"></a>
+      <a href="#"><img src="../assets/img/github.svg" alt="GitHub"></a>
+    </div>
+    <p>&copy; 2025 Christian Melendez. All rights reserved.</p>
+  </footer>
+</body>
+</html>

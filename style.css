@@ -1,0 +1,335 @@
+:root {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --accent: #007acc;
+  --dark-bg: #121212;
+  --header-bg: #0e0e0e;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark body {
+  background-color: var(--dark-bg);
+  color: #ffffff;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--header-bg);
+  height: 60px;
+  padding: 0 2rem;
+}
+
+.logo img {
+  height: 96px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin-left: auto;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* ✅ DARK MODE BUTTON: Left-aligned & tucked under navbar */
+.dark-toggle-wrapper {
+  position: absolute;
+  top: 70px;
+  right: 0.15rem; /* ✅ Closer to screen edge */
+  z-index: 1000;
+}
+
+@media (min-width: 1400px) {
+  .dark-toggle-wrapper {
+    right: 1rem; /* Just a tiny cushion for ultrawides */
+  }
+}
+
+@media (max-width: 768px) {
+  .dark-toggle-wrapper {
+    top: 80px;
+    right: 0.25rem; /* Closer edge on mobile */
+  }
+}
+
+
+#darkModeToggle {
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 46px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+#darkModeToggle:hover {
+  background-color: #333;
+}
+
+/* HERO SECTION */
+.hero {
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  gap: 3rem;
+  margin: 0 auto;
+}
+
+.text-area {
+  flex: 1;
+  max-width: 500px;
+}
+
+#typewriter {
+  font-size: 2.6rem;
+  font-weight: bold;
+}
+
+/* FADE ANIMATION */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1.2s ease-out 4.1s forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* BUTTON STYLES */
+.btn {
+  background-color: var(--accent);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #005f99;
+}
+
+/* IMAGE SECTION */
+.image-area {
+  flex: 1;
+  text-align: center;
+}
+
+.image-area img {
+  max-width: 85%;
+  border-radius: 10px;
+}
+
+.name-tag {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  color: var(--text);
+}
+
+html.dark .name-tag {
+  color: #ffffff;
+}
+
+/* FOOTER */
+footer {
+  background-color: #f4f4f4;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+html.dark footer {
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.socials a img {
+  width: 28px;
+  height: 28px;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+html.dark .socials a img {
+  filter: grayscale(0%) brightness(0) invert(1);
+}
+
+.socials a img:hover {
+  filter: grayscale(0%);
+}
+
+/* ✅ ABOUT PAGE CENTERING SECTION */
+.about-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 160px);
+  padding: 2rem;
+  text-align: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about-pic {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ BIGGER CARD & CENTERED NAME & BUTTON */
+.about-card {
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  max-width: 750px;
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+html.dark .about-card {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+.about-card h2 {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.about-card p {
+  text-align: justify;
+  margin: 1.25rem 0;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.about-card .btn {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* ✅ FINAL LIFTED CENTERING for About Page Card */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding-top: 0.15625vh;
+  padding-bottom: 3vh;
+  min-height: calc(100vh - 160px);
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .text-area {
+    max-width: 100%;
+  }
+
+  .text-area h1 {
+    font-size: 1.8rem;
+  }
+
+  .text-area p {
+    font-size: 1rem;
+  }
+
+  .image-area img {
+    width: 90%;
+    max-width: 240px;
+    height: auto;
+  }
+
+  .about-card {
+    margin: 1rem;
+    padding: 1.5rem;
+    width: 90%;
+    text-align: center;
+  }
+
+  .about-card p {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .about-card img {
+    width: 100%;
+    max-width: 160px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-area h1 {
+    font-size: 1.4rem;
+  }
+
+  .text-area p,
+  .about-card p {
+    font-size: 0.95rem;
+  }
+
+  .container {
+    padding: 1rem 0.5rem;
+  }
+}
