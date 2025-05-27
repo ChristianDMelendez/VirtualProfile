@@ -24,7 +24,7 @@
 
     .navbar {
       position: relative;
-      z-index: 10; /* keeps navbar above everything */
+      z-index: 10;
     }
 
     .landing {
@@ -34,10 +34,10 @@
       align-items: center;
       flex-direction: column;
       padding: 2rem;
-      padding-top: 0; /* removes space above card */
+      padding-top: 120px; /* 👈 drops content under the navbar */
       text-align: center;
       position: relative;
-      z-index: 1;
+      z-index: 1; /* 👈 stays behind the navbar */
     }
 
     .landing h1 {
