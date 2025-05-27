@@ -22,6 +22,11 @@
       padding: 0;
     }
 
+    .navbar {
+      position: relative;
+      z-index: 10; /* ✅ This brings navbar above the landing section */
+    }
+
     .landing {
       min-height: calc(100vh - 120px);
       display: flex;
@@ -30,7 +35,7 @@
       flex-direction: column;
       padding: 2rem;
       text-align: center;
-      margin-top: -120px; /* 👈 This is the line that adds space from the top */
+      margin-top: -120px; /* 👈 Your spacing stays the same */
     }
 
     .landing h1 {
@@ -100,7 +105,9 @@
     <section class="landing">
       <h1>Welcome to my Digital Gateway</h1>
       <p>
-        You've arrived at a curated platform built to showcase depth, skill, and innovation. As you explore, you’ll uncover a streamlined journey through professional highlights, technical showcases, and creative solutions—all tailored to leave a lasting impression.
+        You've arrived at a curated platform built to showcase depth, skill, and innovation.
+        As you explore, you’ll uncover a streamlined journey through professional highlights,
+        technical showcases, and creative solutions—all tailored to leave a lasting impression.
       </p>
       <a href="html/about.html" class="btn-start">Explore More</a>
     </section>
