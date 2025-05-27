@@ -187,6 +187,11 @@
     <p><strong>Contact:</strong> Reach out for questions, collaborations, or tech support.</p>
   </div>
 
+  <div id="bubbleFinal" class="bubble-popup" style="top: 420px;">
+    <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+    <p><strong>Heads up:</strong> Exit out of these bubbles to access the tabs in the navbar!</p>
+  </div>
+
   <script>
     function flashWhiteOnce(id, delay) {
       const el = document.getElementById(id);
@@ -205,6 +210,7 @@
       flashWhiteOnce('bubblePortfolio', 3000);
       flashWhiteOnce('bubbleResume', 4000);
       flashWhiteOnce('bubbleContact', 5000);
+      flashWhiteOnce('bubbleFinal', 6000);
     };
   </script>
 </body>
