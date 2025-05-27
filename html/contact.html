@@ -110,6 +110,37 @@
       text-decoration: none;
     }
 
+    .thank-you-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 9999;
+    }
+
+    .thank-you-box {
+      background: var(--bg-alt, #f0f0f0);
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .thank-you-box h1 {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .thank-you-box p {
+      font-size: 1.1rem;
+    }
+
     @media (max-width: 600px) {
       .message-title {
         font-size: 1.6rem;
@@ -157,25 +188,6 @@
         <button type="submit">Send Message</button>
       </form>
 
-      <script>
-        const form = document.getElementById("contactForm");
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-          const formData = new FormData(form);
-          fetch(form.action, {
-            method: "POST",
-            body: formData,
-            headers: {
-              'Accept': 'application/json'
-            }
-          }).then(() => {
-            window.location.href = "https://christiandmelendez.github.io/VirtualProfile/html/contact.html";
-          }).catch((error) => {
-            alert("Oops! Something went wrong.");
-          });
-        });
-      </script>
-
       <div class="contact-info">
         <h3>Contact Me</h3>
         <p>Email: <a href="mailto:dmcproductionstm@gmail.com">dmcproductionstm@gmail.com</a></p>
@@ -183,6 +195,13 @@
       </div>
     </div>
   </main>
+
+  <div class="thank-you-overlay" id="thankYouOverlay">
+    <div class="thank-you-box">
+      <h1>Thank you for your message! 🙏</h1>
+      <p>I’ll get back to you soon.<br>You’ll be redirected back in <span id="countdown">20</span> seconds.</p>
+    </div>
+  </div>
 
   <footer>
     <div class="socials">
@@ -192,5 +211,36 @@
     </div>
     <p>&copy; 2025 Christian Melendez. All rights reserved.</p>
   </footer>
+
+  <script>
+    const form = document.getElementById("contactForm");
+    const overlay = document.getElementById("thankYouOverlay");
+    const countdown = document.getElementById("countdown");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(() => {
+        overlay.style.display = "flex";
+        let timeLeft = 20;
+        const interval = setInterval(() => {
+          timeLeft--;
+          countdown.textContent = timeLeft;
+          if (timeLeft <= 0) {
+            clearInterval(interval);
+            window.location.href = "https://christiandmelendez.github.io/VirtualProfile/html/contact.html";
+          }
+        }, 1000);
+      }).catch((error) => {
+        alert("Oops! Something went wrong. Try again later.");
+      });
+    });
+  </script>
 </body>
 </html>
