@@ -35,7 +35,7 @@
       flex-direction: column;
       padding: 2rem;
       text-align: center;
-      margin-top: -120px; /* 👈 Your spacing stays the same */
+      margin-top: -120px;
     }
 
     .landing h1 {
@@ -80,19 +80,50 @@
       background-color: var(--dark-bg);
       color: #fff;
     }
+
+    /* 🌟 Tooltip styles */
+    .nav-links li {
+      position: relative;
+    }
+
+    .nav-links li a::after,
+    .logo a::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: -2.5em;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      font-size: 0.75rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .nav-links li a:hover::after,
+    .logo a:hover::after {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
   <header>
     <nav class="navbar">
       <div class="logo">
-        <img src="assets/img/cdmc.png" alt="CDMC Logo" style="height: 96px;" />
+        <a href="index.html" data-tooltip="Back to homepage">
+          <img src="assets/img/cdmc.png" alt="CDMC Logo" style="height: 96px;" />
+        </a>
       </div>
       <ul class="nav-links">
-        <li><a href="html/about.html">About</a></li>
-        <li><a href="html/portfolio.html">Portfolio</a></li>
-        <li><a href="html/resume.html">Resume</a></li>
-        <li><a href="html/contact.html">Contact</a></li>
+        <li><a href="html/about.html" data-tooltip="Learn more about me">About</a></li>
+        <li><a href="html/portfolio.html" data-tooltip="Check out my past work">Portfolio</a></li>
+        <li><a href="html/resume.html" data-tooltip="See my résumé and experience">Resume</a></li>
+        <li><a href="html/contact.html" data-tooltip="Reach out to me directly">Contact</a></li>
       </ul>
     </nav>
 
