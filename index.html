@@ -24,7 +24,7 @@
 
     .navbar {
       position: relative;
-      z-index: 10; /* ✅ This brings navbar above the landing section */
+      z-index: 10;
     }
 
     .landing {
@@ -81,33 +81,42 @@
       color: #fff;
     }
 
-    /* 🌟 Tooltip styles */
-    .nav-links li {
-      position: relative;
+    /* Pop-up bubble styles */
+    .bubble-popup {
+      position: fixed;
+      right: 30px;
+      max-width: 280px;
+      background-color: #1e1e1e;
+      color: #fff;
+      padding: 16px;
+      border-radius: 10px;
+      box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 0.9rem;
+      z-index: 9999;
+      display: none;
+      animation: fadeIn 0.4s ease-in-out;
     }
 
-    .nav-links li a::after,
-    .logo a::after {
-      content: attr(data-tooltip);
+    .bubble-popup .close-btn {
       position: absolute;
-      bottom: -2.5em;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #333;
-      color: white;
-      padding: 6px 10px;
-      border-radius: 6px;
-      white-space: nowrap;
-      font-size: 0.75rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-      z-index: 1000;
+      top: 6px;
+      right: 10px;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
     }
 
-    .nav-links li a:hover::after,
-    .logo a:hover::after {
-      opacity: 1;
+    .bubble-popup p {
+      margin: 0;
+      padding-right: 20px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -115,15 +124,15 @@
   <header>
     <nav class="navbar">
       <div class="logo">
-        <a href="index.html" data-tooltip="Back to homepage">
+        <a href="index.html">
           <img src="assets/img/cdmc.png" alt="CDMC Logo" style="height: 96px;" />
         </a>
       </div>
       <ul class="nav-links">
-        <li><a href="html/about.html" data-tooltip="Learn more about me">About</a></li>
-        <li><a href="html/portfolio.html" data-tooltip="Check out my past work">Portfolio</a></li>
-        <li><a href="html/resume.html" data-tooltip="See my résumé and experience">Resume</a></li>
-        <li><a href="html/contact.html" data-tooltip="Reach out to me directly">Contact</a></li>
+        <li><a href="html/about.html">About</a></li>
+        <li><a href="html/portfolio.html">Portfolio</a></li>
+        <li><a href="html/resume.html">Resume</a></li>
+        <li><a href="html/contact.html">Contact</a></li>
       </ul>
     </nav>
 
@@ -152,5 +161,41 @@
     </div>
     <p>&copy; 2025 Christian Melendez. All rights reserved.</p>
   </footer>
+
+  <!-- BUBBLE POPUPS -->
+  <div id="bubbleLogo" class="bubble-popup" style="top: 20px;">
+    <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+    <p><strong>Logo:</strong> Click to return to this home page.</p>
+  </div>
+
+  <div id="bubbleAbout" class="bubble-popup" style="top: 100px;">
+    <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+    <p><strong>About:</strong> Learn more about me, my values, and my tech journey.</p>
+  </div>
+
+  <div id="bubblePortfolio" class="bubble-popup" style="top: 180px;">
+    <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+    <p><strong>Portfolio:</strong> See real projects that reflect my creativity and skill.</p>
+  </div>
+
+  <div id="bubbleResume" class="bubble-popup" style="top: 260px;">
+    <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+    <p><strong>Resume:</strong> Get a complete breakdown of my experience and achievements.</p>
+  </div>
+
+  <div id="bubbleContact" class="bubble-popup" style="top: 340px;">
+    <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+    <p><strong>Contact:</strong> Reach out for questions, collaborations, or tech support.</p>
+  </div>
+
+  <script>
+    window.onload = () => {
+      setTimeout(() => document.getElementById('bubbleLogo').style.display = 'block', 1000);
+      setTimeout(() => document.getElementById('bubbleAbout').style.display = 'block', 2000);
+      setTimeout(() => document.getElementById('bubblePortfolio').style.display = 'block', 3000);
+      setTimeout(() => document.getElementById('bubbleResume').style.display = 'block', 4000);
+      setTimeout(() => document.getElementById('bubbleContact').style.display = 'block', 5000);
+    };
+  </script>
 </body>
 </html>
