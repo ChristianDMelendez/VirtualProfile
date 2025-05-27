@@ -22,6 +22,11 @@
       padding: 0;
     }
 
+    .navbar {
+      position: relative;
+      z-index: 10; /* ✅ Keeps navbar above everything */
+    }
+
     .landing {
       min-height: calc(100vh - 120px);
       display: flex;
@@ -29,8 +34,8 @@
       align-items: center;
       flex-direction: column;
       padding: 2rem;
+      padding-top: 120px; /* ✅ Pushes landing content lower without breaking layout */
       text-align: center;
-      margin-top: -120px; /* 👈 This is the line that adds space from the top */
     }
 
     .landing h1 {
