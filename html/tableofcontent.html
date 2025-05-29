@@ -1,1 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Table of Contents | Digital Profile Hub</title>
+
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <script defer src="../assets/js/script.js"></script>
+  <style>
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      position: relative;
+      z-index: 10;
+    }
+
+    .toc-container {
+      max-width: 1000px;
+      margin: 4rem auto;
+      padding: 2rem;
+      background-color: var(--card);
+      border-radius: 12px;
+      box-shadow: 0 0 18px rgba(0,0,0,0.1);
+    }
+
+    .toc-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--accent);
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .toc-list li {
+      background: var(--input);
+      margin: 1rem 0;
+      padding: 1rem;
+      border-left: 5px solid var(--accent);
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+
+    .toc-list li:hover {
+      background-color: var(--primary);
+      color: #fff;
+    }
+
+    .toc-list a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .toc-description {
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+      color: var(--text);
+    }
+
+    html.dark .toc-list li:hover {
+      background-color: #00ffe1;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="../index.html">
+          <img src="../assets/img/cdmc.png" alt="CDMC Logo" style="height: 96px;" />
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="dark-toggle-wrapper">
+      <button id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="toc-container">
+      <h1 class="toc-title">Table of Contents</h1>
+      <ul class="toc-list">
+        <li>
+          <a href="about.html">About</a>
+          <p class="toc-description">Get to know me—my background, values, and what drives me in tech.</p>
+        </li>
+        <li>
+          <a href="portfolio.html">Portfolio</a>
+          <p class="toc-description">Explore my creative and technical work through real projects and demos.</p>
+        </li>
+        <li>
+          <a href="resume.html">Resume</a>
+          <p class="toc-description">View my qualifications, education, experience, and accomplishments.</p>
+        </li>
+        <li>
+          <a href="contact.html">Contact</a>
+          <p class="toc-description">Need help or want to collab? Reach out directly via email or phone.</p>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <div class="socials">
+      <a href="#"><img src="../assets/img/x-icon.svg" alt="X.com"></a>
+      <a href="#"><img src="../assets/img/linkedin.svg" alt="LinkedIn"></a>
+      <a href="#"><img src="../assets/img/github.svg" alt="GitHub"></a>
+    </div>
+    <p>&copy; 2025 Christian Melendez. All rights reserved.</p>
+  </footer>
+</body>
+</html>
 
