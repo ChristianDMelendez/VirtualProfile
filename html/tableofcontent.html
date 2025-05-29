@@ -54,13 +54,13 @@
       padding: 1rem;
       border-left: 5px solid var(--accent);
       border-radius: 8px;
-      transition: background 0.2s ease;
+      transition: background 0.2s ease, color 0.2s ease;
       cursor: pointer;
     }
 
     .toc-list li:hover {
-      background-color: var(--primary);
-      color: #fff;
+      background-color: #dceeff;
+      color: #000;
     }
 
     .toc-list li:hover a {
@@ -95,6 +95,10 @@
     }
 
     html.dark .toc-list li:hover .toc-description {
+      color: #000;
+    }
+
+    html.dark .toc-list li:hover a {
       color: #000;
     }
   </style>
