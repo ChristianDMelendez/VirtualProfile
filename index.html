@@ -80,43 +80,6 @@
       background-color: var(--dark-bg);
       color: #fff;
     }
-
-    .bubble-popup {
-      position: fixed;
-      right: 30px;
-      max-width: 280px;
-      background-color: #1e1e1e;
-      color: #fff;
-      padding: 16px;
-      border-radius: 10px;
-      box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
-      font-family: 'Segoe UI', sans-serif;
-      font-size: 0.9rem;
-      z-index: 9999;
-      display: none;
-      transition: background-color 0.2s ease, color 0.2s ease;
-    }
-
-    .flash-white {
-      background-color: white !important;
-      color: #000 !important;
-    }
-
-    .bubble-popup .close-btn {
-      position: absolute;
-      top: 6px;
-      right: 10px;
-      background: transparent;
-      border: none;
-      color: inherit;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    .bubble-popup p {
-      margin: 0;
-      padding-right: 20px;
-    }
   </style>
 </head>
 <body>
@@ -160,58 +123,5 @@
     </div>
     <p>&copy; 2025 Christian Melendez. All rights reserved.</p>
   </footer>
-
-  <!-- Pop-up Bubbles -->
-  <div id="bubbleLogo" class="bubble-popup" style="top: 20px;">
-    <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
-    <p><strong>Logo:</strong> Click to return to this home page.</p>
-  </div>
-
-  <div id="bubbleAbout" class="bubble-popup" style="top: 100px;">
-    <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
-    <p><strong>About:</strong> Learn more about me, my values, and my tech journey.</p>
-  </div>
-
-  <div id="bubblePortfolio" class="bubble-popup" style="top: 180px;">
-    <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
-    <p><strong>Portfolio:</strong> See real projects that reflect my creativity and skill.</p>
-  </div>
-
-  <div id="bubbleResume" class="bubble-popup" style="top: 260px;">
-    <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
-    <p><strong>Resume:</strong> Get a complete breakdown of my experience and achievements.</p>
-  </div>
-
-  <div id="bubbleContact" class="bubble-popup" style="top: 340px;">
-    <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
-    <p><strong>Contact:</strong> Reach out for questions, collaborations, or tech support.</p>
-  </div>
-
-  <div id="bubbleFinal" class="bubble-popup" style="top: 420px;">
-    <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
-    <p><strong>Heads up:</strong> Exit out of these bubbles to access the tabs in the navbar!</p>
-  </div>
-
-  <script>
-    function flashWhiteOnce(id, delay) {
-      const el = document.getElementById(id);
-      setTimeout(() => {
-        el.style.display = 'block';
-        el.classList.add('flash-white');
-        setTimeout(() => {
-          el.classList.remove('flash-white');
-        }, 300);
-      }, delay);
-    }
-
-    window.onload = () => {
-      flashWhiteOnce('bubbleLogo', 1000);
-      flashWhiteOnce('bubbleAbout', 2000);
-      flashWhiteOnce('bubblePortfolio', 3000);
-      flashWhiteOnce('bubbleResume', 4000);
-      flashWhiteOnce('bubbleContact', 5000);
-      flashWhiteOnce('bubbleFinal', 6000);
-    };
-  </script>
 </body>
 </html>
