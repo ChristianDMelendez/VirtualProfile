@@ -75,8 +75,21 @@
       color: var(--text);
     }
 
+    html.dark .toc-list li {
+      background-color: #222;
+      color: #f1f1f1;
+    }
+
+    html.dark .toc-description {
+      color: #ccc;
+    }
+
     html.dark .toc-list li:hover {
       background-color: #00ffe1;
+      color: #000;
+    }
+
+    html.dark .toc-list li:hover .toc-description {
       color: #000;
     }
   </style>
@@ -93,7 +106,7 @@
         <li><a href="about.html">About</a></li>
         <li><a href="portfolio.html">Portfolio</a></li>
         <li><a href="resume.html">Resume</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
       </ul>
     </nav>
     <div class="dark-toggle-wrapper">
@@ -135,4 +148,3 @@
   </footer>
 </body>
 </html>
-
