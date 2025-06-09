@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #0e0e0e;
+      background: linear-gradient(to right, #000 50%, #444 50%);
       color: #e0e0e0;
       display: flex;
       align-items: center;
@@ -24,6 +24,8 @@
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+      position: relative;
+      z-index: 1;
     }
 
     h2 {
@@ -74,9 +76,9 @@
       display: none;
       padding: 20px;
       text-align: center;
-      background: #222;
-      border: 1px solid #00ffff;
-      color: #00ffff;
+      background: #000;
+      border: 2px solid #39ff14;
+      color: #39ff14;
       border-radius: 6px;
       margin-top: 20px;
       animation: fadeIn 0.4s ease-in-out;
@@ -93,7 +95,7 @@
     <h2>Send Me a Message</h2>
     <p class="note">This message will be sent to my email.</p>
 
-    <form class="contact-form" action="https://formsubmit.co/dmcproductionstm@gmail.com" method="POST" onsubmit="showThankYou(); return true;">
+    <form class="contact-form" action="https://formsubmit.co/dmcproductionstm@gmail.com" method="POST" onsubmit="handleSubmit(event)">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="box">
       <input type="hidden" name="_subject" value="New Message from Website">
@@ -105,15 +107,44 @@
     </form>
 
     <div class="thank-you" id="thankYouMsg">
-      ✅ Message sent successfully!
+      ✅ Message sent successfully!<br><br>
+      Redirecting to homepage in <span id="countdown">5</span> seconds...
     </div>
   </div>
 
   <script>
-    function showThankYou() {
-      setTimeout(() => {
-        document.getElementById("thankYouMsg").style.display = "block";
-      }, 500);
+    function handleSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form)
+      })
+      .then(response => {
+        if (response.ok) {
+          document.querySelector('.contact-form').style.display = 'none';
+          const thankYou = document.getElementById('thankYouMsg');
+          thankYou.style.display = 'block';
+
+          let seconds = 5;
+          const countdown = document.getElementById('countdown');
+          const timer = setInterval(() => {
+            seconds--;
+            countdown.textContent = seconds;
+            if (seconds <= 0) {
+              clearInterval(timer);
+              window.location.href = "index.html";
+            }
+          }, 1000);
+        } else {
+          alert("Something went wrong. Try again later.");
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert("There was a problem submitting the form.");
+      });
     }
   </script>
 </body>
