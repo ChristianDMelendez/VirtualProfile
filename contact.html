@@ -102,31 +102,44 @@
 <body>
   <div class="container">
     <h2>Send Me a Message</h2>
-    <form class="contact-form">
+    <form class="contact-form" id="contactForm" method="POST">
+      <!-- Hidden FormSubmit controls -->
+      <input type="hidden" name="_template" value="box">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="New Message from SilentIndustries Contact Page">
+
       <div class="contact-row">
-        <input type="email" id="contactField" placeholder="Your Email" required />
+        <input type="email" id="contactField" name="sender" placeholder="Your Email" required />
         <select id="method" onchange="updateContactType()">
           <option value="email">Email</option>
           <option value="text">Text</option>
         </select>
       </div>
-      <textarea placeholder="Your Message" rows="6" required></textarea>
+      <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
       <button type="submit">Send</button>
     </form>
   </div>
 
   <script>
+    const form = document.getElementById("contactForm");
+    const methodSelect = document.getElementById("method");
+    const inputField = document.getElementById("contactField");
+
     function updateContactType() {
-      const method = document.getElementById("method").value;
-      const input = document.getElementById("contactField");
+      const method = methodSelect.value;
       if (method === "text") {
-        input.type = "tel";
-        input.placeholder = "Your Phone Number";
+        form.action = "https://formsubmit.co/8325909418@tmomail.net";
+        inputField.type = "tel";
+        inputField.placeholder = "Your Phone Number";
       } else {
-        input.type = "email";
-        input.placeholder = "Your Email";
+        form.action = "https://formsubmit.co/dmcproductionstm@gmail.com";
+        inputField.type = "email";
+        inputField.placeholder = "Your Email";
       }
     }
+
+    // Set default action
+    updateContactType();
   </script>
 </body>
 </html>
