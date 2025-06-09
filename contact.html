@@ -33,8 +33,26 @@
     .note {
       font-size: 0.9rem;
       color: #aaa;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       text-align: center;
+    }
+    .popup-note {
+      display: none;
+      color: #ffcc00;
+      font-size: 0.9rem;
+      text-align: center;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+    .thank-you {
+      display: none;
+      background: #000;
+      color: #0f0;
+      border: 1px solid #0f0;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      margin-top: 20px;
     }
     .contact-form {
       display: flex;
@@ -45,7 +63,7 @@
       display: flex;
       gap: 10px;
     }
-    .contact-row input {
+    .contact-row input, .contact-row select, textarea {
       flex-grow: 1;
       padding: 12px;
       font-size: 1rem;
@@ -58,24 +76,6 @@
     .contact-row select {
       flex: none;
       width: 130px;
-      padding: 12px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 6px;
-      background-color: #111;
-      color: #00ffff;
-      box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.2);
-    }
-    textarea {
-      width: 100%;
-      padding: 12px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 6px;
-      background-color: #000;
-      color: #00ffff;
-      box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.2);
-      resize: vertical;
     }
     button {
       background-color: #00ffff;
@@ -91,76 +91,86 @@
     button:hover {
       background-color: #00cccc;
     }
-    .thank-you {
-      display: none;
-      text-align: center;
-      color: #00ff99;
-      font-weight: bold;
-      margin-top: 20px;
-    }
-    .popup-note {
-      display: none;
-      color: #ffcc00;
-      font-size: 0.9rem;
-      text-align: center;
-      margin-top: -10px;
-      margin-bottom: 10px;
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <h2>Send Me a Message</h2>
-    <p class="note">Please choose whether to send via Email or Text.</p>
+    <p class="note">Choose either Email or Text from the dropdown.</p>
 
-    <form class="contact-form" id="contactForm" action="https://formsubmit.co/8325909418@tmomail.net" method="POST">
-      <input type="hidden" name="_captcha" value="false" />
+    <form class="contact-form" id="contactForm">
       <div class="contact-row">
-        <input type="text" id="contactField" name="contact" placeholder="Your Email or Phone" required />
+        <input type="email" id="contactField" name="contact" placeholder="Your Email" required />
         <select id="method" onchange="updateContactType()">
           <option value="email">Email</option>
           <option value="text">Text</option>
         </select>
       </div>
-      <p class="popup-note" id="textNote">* Enter number without dashes or spaces</p>
-      <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+      <p class="popup-note" id="textNote">* Enter your number without dashes (e.g. 8325909418)</p>
+      <textarea name="message" id="message" placeholder="Your Message" rows="6" required></textarea>
       <button type="submit">Send</button>
-      <div class="thank-you" id="thankYouCard">✅ Message sent to my phone!</div>
     </form>
+
+    <div class="thank-you" id="thankYou">Thanks! Your message was sent.</div>
   </div>
 
   <script>
-    function updateContactType() {
-      const method = document.getElementById("method").value;
-      const input = document.getElementById("contactField");
-      const note = document.getElementById("textNote");
+    const methodSelect = document.getElementById("method");
+    const contactField = document.getElementById("contactField");
+    const textNote = document.getElementById("textNote");
 
+    function updateContactType() {
+      const method = methodSelect.value;
       if (method === "text") {
-        input.type = "tel";
-        input.placeholder = "Your Phone Number";
-        note.style.display = "block";
+        contactField.type = "tel";
+        contactField.placeholder = "Your Phone Number";
+        textNote.style.display = "block";
       } else {
-        input.type = "email";
-        input.placeholder = "Your Email";
-        note.style.display = "none";
+        contactField.type = "email";
+        contactField.placeholder = "Your Email";
+        textNote.style.display = "none";
       }
     }
 
-    document.getElementById("contactForm").addEventListener("submit", function(e) {
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
       e.preventDefault();
-      const form = e.target;
 
-      fetch(form.action, {
+      const method = methodSelect.value;
+      const contact = contactField.value.trim();
+      const message = document.getElementById("message").value;
+
+      let endpoint = "https://formsubmit.co/ajax/";
+      let to = "";
+
+      if (method === "text") {
+        to = "8325909418@tmomail.net"; // Text route
+      } else {
+        to = "dmcproductionstm@gmail.com"; // Email route
+      }
+
+      fetch(endpoint + to, {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(new FormData(form)).toString()
-      }).then(() => {
-        form.reset();
-        document.getElementById("thankYouCard").style.display = "block";
-        setTimeout(() => {
-          document.getElementById("thankYouCard").style.display = "none";
-        }, 4000);
-      });
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          contact: contact,
+          message: message,
+          _captcha: false,
+        }),
+      })
+        .then((res) => {
+          if (res.ok) {
+            document.getElementById("contactForm").style.display = "none";
+            document.getElementById("thankYou").style.display = "block";
+          } else {
+            alert("Error sending message.");
+          }
+        })
+        .catch((err) => {
+          alert("Failed to send. Please try again.");
+        });
     });
   </script>
 </body>
