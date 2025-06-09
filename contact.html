@@ -98,79 +98,74 @@
     <h2>Send Me a Message</h2>
     <p class="note">Choose either Email or Text from the dropdown.</p>
 
-    <form class="contact-form" id="contactForm">
+    <form id="contactForm" class="contact-form">
       <div class="contact-row">
-        <input type="email" id="contactField" name="contact" placeholder="Your Email" required />
+        <input type="text" id="contactField" name="contact" placeholder="Your Email" required />
         <select id="method" onchange="updateContactType()">
           <option value="email">Email</option>
           <option value="text">Text</option>
         </select>
       </div>
-      <p class="popup-note" id="textNote">* Enter your number without dashes (e.g. 8325909418)</p>
+      <p class="popup-note" id="textNote">* Enter your phone number with no dashes (e.g. 8325909418)</p>
       <textarea name="message" id="message" placeholder="Your Message" rows="6" required></textarea>
       <button type="submit">Send</button>
     </form>
 
-    <div class="thank-you" id="thankYou">Thanks! Your message was sent.</div>
+    <div class="thank-you" id="thankYou">✅ Thanks! Your message was sent successfully.</div>
   </div>
 
   <script>
-    const methodSelect = document.getElementById("method");
-    const contactField = document.getElementById("contactField");
-    const textNote = document.getElementById("textNote");
-
     function updateContactType() {
-      const method = methodSelect.value;
+      const method = document.getElementById("method").value;
+      const input = document.getElementById("contactField");
+      const note = document.getElementById("textNote");
+
       if (method === "text") {
-        contactField.type = "tel";
-        contactField.placeholder = "Your Phone Number";
-        textNote.style.display = "block";
+        input.placeholder = "Your Phone Number";
+        note.style.display = "block";
       } else {
-        contactField.type = "email";
-        contactField.placeholder = "Your Email";
-        textNote.style.display = "none";
+        input.placeholder = "Your Email";
+        note.style.display = "none";
       }
     }
 
-    document.getElementById("contactForm").addEventListener("submit", function (e) {
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
-      const method = methodSelect.value;
-      const contact = contactField.value.trim();
-      const message = document.getElementById("message").value;
+      const method = document.getElementById("method").value;
+      const userContact = document.getElementById("contactField").value.trim();
+      const userMessage = document.getElementById("message").value.trim();
 
-      let endpoint = "https://formsubmit.co/ajax/";
-      let to = "";
-
+      let destinationEmail = "";
       if (method === "text") {
-        to = "8325909418@tmomail.net"; // Text route
+        destinationEmail = "8325909418@tmomail.net";  // text
       } else {
-        to = "dmcproductionstm@gmail.com"; // Email route
+        destinationEmail = "dmcproductionstm@gmail.com";  // email
       }
 
-      fetch(endpoint + to, {
+      fetch(`https://formsubmit.co/ajax/${destinationEmail}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json",
+          "Accept": "application/json"
         },
         body: JSON.stringify({
-          contact: contact,
-          message: message,
-          _captcha: false,
-        }),
-      })
-        .then((res) => {
-          if (res.ok) {
-            document.getElementById("contactForm").style.display = "none";
-            document.getElementById("thankYou").style.display = "block";
-          } else {
-            alert("Error sending message.");
-          }
+          contact: userContact,
+          message: userMessage,
+          _captcha: false
         })
-        .catch((err) => {
-          alert("Failed to send. Please try again.");
-        });
+      })
+      .then(response => {
+        if (response.ok) {
+          document.getElementById("contactForm").style.display = "none";
+          document.getElementById("thankYou").style.display = "block";
+        } else {
+          alert("There was a problem sending your message.");
+        }
+      })
+      .catch(error => {
+        alert("Something went wrong. Try again later.");
+      });
     });
   </script>
 </body>
