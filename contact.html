@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact Me</title>
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -17,6 +20,7 @@
       min-height: 100vh;
       padding: 20px;
     }
+
     .container {
       width: 100%;
       max-width: 600px;
@@ -25,20 +29,40 @@
       border-radius: 10px;
       box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
     }
+
     h2 {
       color: #00ffff;
       text-align: center;
       margin-bottom: 20px;
     }
+
+    .note {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .popup-note {
+      display: none;
+      color: #ffcc00;
+      font-size: 0.9rem;
+      text-align: center;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+
     .contact-form {
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
+
     .contact-row {
       display: flex;
       gap: 10px;
     }
+
     .contact-row input {
       flex-grow: 1;
       padding: 12px;
@@ -49,6 +73,7 @@
       color: #00ffff;
       box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.2);
     }
+
     .contact-row select {
       flex: none;
       width: 130px;
@@ -60,6 +85,7 @@
       color: #00ffff;
       box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.2);
     }
+
     textarea {
       width: 100%;
       padding: 12px;
@@ -71,6 +97,7 @@
       box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.2);
       resize: vertical;
     }
+
     button {
       background-color: #00ffff;
       color: #000;
@@ -82,46 +109,92 @@
       cursor: pointer;
       transition: 0.3s ease;
     }
+
     button:hover {
       background-color: #00cccc;
+    }
+
+    .thank-you {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #000;
+      color: #00ffff;
+      border: 2px solid #00ffff;
+      border-radius: 10px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h2>Send Me a Message</h2>
-    <form id="form" method="POST" action="https://formsubmit.co/dmcproductionstm@gmail.com" class="contact-form">
+    <p class="note">Please choose whether to send via Email or Text.</p>
+
+    <form class="contact-form" action="https://formsubmit.co/ajax/dmcproductionstm@gmail.com" method="POST" id="contactForm">
+      <input type="hidden" name="_captcha" value="false">
       <div class="contact-row">
-        <input type="text" id="contactField" name="name" placeholder="Your Email or Number" required />
-        <select id="method" onchange="updateMethod()">
+        <input type="email" id="contactField" name="contact" placeholder="Your Email" required />
+        <select id="method" onchange="updateContactType()">
           <option value="email">Email</option>
           <option value="text">Text</option>
         </select>
       </div>
+      <p class="popup-note" id="textNote">* Enter number without dashes or spaces</p>
       <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" id="realAction" name="_next" value="https://yourwebsite.com/thankyou.html" />
       <button type="submit">Send</button>
     </form>
+
+    <div class="thank-you" id="thankYouCard">
+      <h3>Thank you!</h3>
+      <p>Your message has been sent successfully.</p>
+    </div>
   </div>
 
   <script>
-    function updateMethod() {
-      const select = document.getElementById("method");
+    function updateContactType() {
+      const method = document.getElementById("method").value;
       const input = document.getElementById("contactField");
-      const form = document.getElementById("form");
-      const value = select.value;
+      const note = document.getElementById("textNote");
 
-      if (value === "text") {
+      if (method === "text") {
         input.type = "tel";
         input.placeholder = "Your Phone Number";
-        form.action = "https://formsubmit.co/8325909418@tmomail.net";
+        note.style.display = "block";
       } else {
         input.type = "email";
         input.placeholder = "Your Email";
-        form.action = "https://formsubmit.co/dmcproductionstm@gmail.com";
+        note.style.display = "none";
       }
     }
+
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const form = e.target;
+
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          form.style.display = "none";
+          document.getElementById("thankYouCard").style.display = "block";
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      })
+      .catch(error => alert("Error sending message: " + error));
+    });
   </script>
 </body>
 </html>
