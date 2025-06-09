@@ -150,8 +150,13 @@
       e.preventDefault();
 
       const method = document.getElementById("method").value;
-      const contact = document.getElementById("contactField").value;
+      let contact = document.getElementById("contactField").value;
       const message = document.getElementById("messageField").value;
+
+      // Auto-route to T-Mobile text if "Text" selected
+      if (method === "text") {
+        contact = `${contact}@tmomail.net`;
+      }
 
       const payload = {
         contact,
