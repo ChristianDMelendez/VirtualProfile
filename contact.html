@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact Me</title>
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -48,17 +50,6 @@
       text-align: center;
       margin-top: -10px;
       margin-bottom: 10px;
-    }
-
-    .thank-you {
-      display: none;
-      margin-top: 20px;
-      padding: 20px;
-      background-color: #002f2f;
-      border-radius: 8px;
-      color: #00ffff;
-      text-align: center;
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
     }
 
     .contact-form {
@@ -128,8 +119,9 @@
   <div class="container">
     <h2>Send Me a Message</h2>
     <p class="note">Please choose whether to send via Email or Text.</p>
-    <form id="contactForm" class="contact-form" method="POST">
+    <form class="contact-form" action="https://formsubmit.co/dmcproductionstm@gmail.com" method="POST">
       <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
       <div class="contact-row">
         <input type="email" id="contactField" name="contact" placeholder="Your Email" required />
         <select id="method" onchange="updateContactType()">
@@ -141,62 +133,24 @@
       <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
       <button type="submit">Send</button>
     </form>
-
-    <div class="thank-you" id="thankYouCard">
-      ✅ Your message has been sent successfully!
-    </div>
   </div>
 
   <script>
-    const form = document.getElementById("contactForm");
-    const contactInput = document.getElementById("contactField");
-    const methodSelect = document.getElementById("method");
-    const textNote = document.getElementById("textNote");
-    const thankYouCard = document.getElementById("thankYouCard");
-
     function updateContactType() {
-      if (methodSelect.value === "text") {
-        contactInput.type = "tel";
-        contactInput.placeholder = "Your Phone Number";
-        textNote.style.display = "block";
+      const method = document.getElementById("method").value;
+      const input = document.getElementById("contactField");
+      const note = document.getElementById("textNote");
+
+      if (method === "text") {
+        input.type = "tel";
+        input.placeholder = "Your Phone Number";
+        note.style.display = "block";
       } else {
-        contactInput.type = "email";
-        contactInput.placeholder = "Your Email";
-        textNote.style.display = "none";
+        input.type = "email";
+        input.placeholder = "Your Email";
+        note.style.display = "none";
       }
     }
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const method = methodSelect.value;
-      const dest = method === "email"
-        ? "dmcproductionstm@gmail.com"
-        : "8325909418@tmomail.net";
-
-      const action = `https://formsubmit.co/${dest}`;
-      form.action = action;
-
-      fetch(action, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams(new FormData(form)).toString(),
-      })
-      .then(response => {
-        if (response.ok) {
-          form.reset();
-          updateContactType();
-          thankYouCard.style.display = "block";
-        } else {
-          alert("Message failed. Please try again.");
-        }
-      })
-      .catch(() => {
-        alert("Message failed. Please try again.");
-      });
-    });
   </script>
 </body>
-</html>
+</html> 
