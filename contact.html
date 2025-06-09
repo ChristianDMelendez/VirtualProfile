@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact Me</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -20,7 +17,6 @@
       min-height: 100vh;
       padding: 20px;
     }
-
     .container {
       width: 100%;
       max-width: 600px;
@@ -29,20 +25,17 @@
       border-radius: 10px;
       box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
     }
-
     h2 {
       color: #00ffff;
       text-align: center;
       margin-bottom: 20px;
     }
-
     .note {
       font-size: 0.9rem;
       color: #aaa;
       margin-bottom: 15px;
       text-align: center;
     }
-
     .popup-note {
       display: none;
       color: #ffcc00;
@@ -51,18 +44,15 @@
       margin-top: -10px;
       margin-bottom: 10px;
     }
-
     .contact-form {
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
-
     .contact-row {
       display: flex;
       gap: 10px;
     }
-
     .contact-row input {
       flex-grow: 1;
       padding: 12px;
@@ -73,7 +63,6 @@
       color: #00ffff;
       box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.2);
     }
-
     .contact-row select {
       flex: none;
       width: 130px;
@@ -85,7 +74,6 @@
       color: #00ffff;
       box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.2);
     }
-
     textarea {
       width: 100%;
       padding: 12px;
@@ -97,7 +85,6 @@
       box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.2);
       resize: vertical;
     }
-
     button {
       background-color: #00ffff;
       color: #000;
@@ -109,9 +96,15 @@
       cursor: pointer;
       transition: 0.3s ease;
     }
-
     button:hover {
       background-color: #00cccc;
+    }
+    .thank-you {
+      display: none;
+      text-align: center;
+      color: #00ff99;
+      font-weight: bold;
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -119,9 +112,9 @@
   <div class="container">
     <h2>Send Me a Message</h2>
     <p class="note">Please choose whether to send via Email or Text.</p>
-    <form class="contact-form" action="https://formsubmit.co/dmcproductionstm@gmail.com" method="POST">
+
+    <form class="contact-form" id="contactForm" method="POST">
       <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
       <div class="contact-row">
         <input type="email" id="contactField" name="contact" placeholder="Your Email" required />
         <select id="method" onchange="updateContactType()">
@@ -133,14 +126,20 @@
       <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
       <button type="submit">Send</button>
     </form>
+
+    <div class="thank-you" id="thankYouCard">
+      ✅ Your message has been sent!
+    </div>
   </div>
 
   <script>
+    const form = document.getElementById('contactForm');
+    const input = document.getElementById('contactField');
+    const note = document.getElementById('textNote');
+    const thankYouCard = document.getElementById('thankYouCard');
+
     function updateContactType() {
       const method = document.getElementById("method").value;
-      const input = document.getElementById("contactField");
-      const note = document.getElementById("textNote");
-
       if (method === "text") {
         input.type = "tel";
         input.placeholder = "Your Phone Number";
@@ -151,6 +150,30 @@
         note.style.display = "none";
       }
     }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const method = document.getElementById("method").value;
+      const actionUrl = method === "text"
+        ? "https://formsubmit.co/8325909418@tmomail.net"
+        : "https://formsubmit.co/dmcproductionstm@gmail.com";
+
+      form.setAttribute("action", actionUrl);
+
+      // Submit the form manually
+      fetch(actionUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(form)).toString()
+      }).then(() => {
+        form.reset();
+        thankYouCard.style.display = "block";
+        setTimeout(() => {
+          thankYouCard.style.display = "none";
+        }, 4000);
+      });
+    });
   </script>
 </body>
-</html> 
+</html>
