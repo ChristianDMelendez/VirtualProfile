@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Me</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0e0e0e;
+      color: #e0e0e0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        flex-direction: row;
+        height: 100vh;
+      }
+    }
+
+    .left-section, .right-section {
+      width: 100%;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    @media (min-width: 768px) {
+      .left-section, .right-section {
+        width: 50%;
+        padding: 40px;
+      }
+    }
+
+    .left-section {
+      background-color: #000000;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .left-section img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .left-section img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+    }
+
+    .right-section {
+      background-color: #1a1a1a;
+      border-left: 2px solid #2e2e2e;
+    }
+
+    .timeline {
+      position: relative;
+      margin-left: 20px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #00ffff;
+    }
+
+    .milestone {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 30px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards;
+    }
+
+    .milestone:nth-child(n) {
+      animation-delay: calc(0.2s * var(--order));
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0.2; }
+      100% { opacity: 1; }
+    }
+
+    .milestone::before {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      background: #00ffff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #00ffff;
+      animation: blink 3s ease-in-out infinite;
+      animation-delay: calc(0.2s * var(--order));
+    }
+
+    .milestone h3 {
+      margin: 0;
+      color: #00ffff;
+      font-size: 1.2rem;
+    }
+
+    .milestone p {
+      margin: 5px 0 0;
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- LEFT: STORY IMAGES -->
+    <div class="left-section">
+      <img src="mystory1.jpg" alt="Life Story Page 1" />
+      <img src="mystory2.jpg" alt="Life Story Page 2" />
+    </div>
+
+    <!-- RIGHT: TIMELINE -->
+    <div class="right-section">
+      <div class="timeline">
+        <div class="milestone" style="--order:1">
+          <h3>1998</h3>
+          <p>Born on September 22, 1998.</p>
+        </div>
+        <div class="milestone" style="--order:2">
+          <h3>1999</h3>
+          <p>Parents traveled to the United States in search of medical treatment for me.</p>
+        </div>
+        <div class="milestone" style="--order:3">
+          <h3>2003-2004</h3>
+          <p>Started Pre-K at King Elementary.</p>
+        </div>
+        <div class="milestone" style="--order:4">
+          <h3>2004-2005</h3>
+          <p>Completed Kindergarten at King Elementary.</p>
+        </div>
+        <div class="milestone" style="--order:5">
+          <h3>2005-2006</h3>
+          <p>First grade at Franz Elementary.</p>
+        </div>
+        <div class="milestone" style="--order:6">
+          <h3>2006-2007</h3>
+          <p>Second grade at Franz Elementary.</p>
+        </div>
+        <div class="milestone" style="--order:7">
+          <h3>2007-2010</h3>
+          <p>3rd through 5th grade at Stephens Elementary.</p>
+        </div>
+        <div class="milestone" style="--order:8">
+          <h3>2010-2013</h3>
+          <p>Morton Ranch Junior High (6th to 8th grade).</p>
+        </div>
+        <div class="milestone" style="--order:9">
+          <h3>2013-2017</h3>
+          <p>Morton Ranch High School (9th to 12th grade).</p>
+        </div>
+        <div class="milestone" style="--order:10">
+          <h3>2017-2021</h3>
+          <p>Earned Cisco Network Analyst Associate’s Degree at Lone Star College Cy-Fair.</p>
+        </div>
+        <div class="milestone" style="--order:11">
+          <h3>2022-2024</h3>
+          <p>Technology Assistant at Hastings Ninth Grade Center.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<a id="backBtn" href="index.html" style="
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: #00ffff;
+  color: #000;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-decoration: none;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
+  z-index: 1000;
+">← Back to Home</a>
+
+<script>
+  // Hides the button if you're already on index.html
+  if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '/index') {
+    document.getElementById('backBtn').style.display = 'none';
+  }
+</script>
+
