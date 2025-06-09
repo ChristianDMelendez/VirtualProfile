@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact Me</title>
   <style>
-    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -17,6 +16,7 @@
       min-height: 100vh;
       padding: 20px;
     }
+
     .container {
       width: 100%;
       max-width: 600px;
@@ -25,79 +25,84 @@
       border-radius: 10px;
       box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
     }
+
     h2 {
       color: #00ffff;
       text-align: center;
       margin-bottom: 20px;
     }
+
     .note {
       font-size: 0.9rem;
       color: #aaa;
-      margin-bottom: 10px;
       text-align: center;
+      margin-bottom: 10px;
     }
+
     .popup-note {
       display: none;
       color: #ffcc00;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       text-align: center;
       margin-top: -10px;
       margin-bottom: 10px;
     }
-    .thank-you {
-      display: none;
-      background: #000;
-      color: #0f0;
-      border: 1px solid #0f0;
-      padding: 20px;
-      text-align: center;
-      border-radius: 10px;
-      margin-top: 20px;
-    }
+
     .contact-form {
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
+
     .contact-row {
       display: flex;
       gap: 10px;
     }
-    .contact-row input, .contact-row select, textarea {
-      flex-grow: 1;
+
+    .contact-row input, .contact-row select, textarea, button {
+      width: 100%;
       padding: 12px;
       font-size: 1rem;
-      border: none;
       border-radius: 6px;
+      border: none;
+      box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.2);
       background-color: #000;
       color: #00ffff;
-      box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.2);
     }
+
     .contact-row select {
-      flex: none;
       width: 130px;
+      background-color: #111;
     }
+
     button {
       background-color: #00ffff;
       color: #000;
-      padding: 12px;
       font-weight: bold;
-      font-size: 1rem;
-      border: none;
-      border-radius: 6px;
       cursor: pointer;
-      transition: 0.3s ease;
+      transition: background-color 0.3s ease;
     }
+
     button:hover {
       background-color: #00cccc;
+    }
+
+    .thank-you {
+      display: none;
+      padding: 20px;
+      text-align: center;
+      background: #222;
+      border: 1px solid #00ffff;
+      color: #00ffff;
+      border-radius: 6px;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h2>Send Me a Message</h2>
-    <p class="note">Choose either Email or Text from the dropdown.</p>
-
+    <p class="note">Please choose to send via Email or Text.</p>
     <form id="contactForm" class="contact-form">
       <div class="contact-row">
         <input type="text" id="contactField" name="contact" placeholder="Your Email" required />
@@ -106,12 +111,14 @@
           <option value="text">Text</option>
         </select>
       </div>
-      <p class="popup-note" id="textNote">* Enter your phone number with no dashes (e.g. 8325909418)</p>
-      <textarea name="message" id="message" placeholder="Your Message" rows="6" required></textarea>
+      <p class="popup-note" id="textNote">* Enter number with area code and no dashes</p>
+      <textarea name="message" id="messageField" placeholder="Your Message" rows="6" required></textarea>
       <button type="submit">Send</button>
     </form>
 
-    <div class="thank-you" id="thankYou">✅ Thanks! Your message was sent successfully.</div>
+    <div class="thank-you" id="thankYouMsg">
+      ✅ Message sent successfully!
+    </div>
   </div>
 
   <script>
@@ -129,43 +136,29 @@
       }
     }
 
-    document.getElementById("contactForm").addEventListener("submit", function(e) {
+    document.getElementById("contactForm").addEventListener("submit", async (e) => {
       e.preventDefault();
-
       const method = document.getElementById("method").value;
-      const userContact = document.getElementById("contactField").value.trim();
-      const userMessage = document.getElementById("message").value.trim();
+      const contact = document.getElementById("contactField").value;
+      const message = document.getElementById("messageField").value;
 
-      let destinationEmail = "";
-      if (method === "text") {
-        destinationEmail = "8325909418@tmomail.net";  // text
-      } else {
-        destinationEmail = "dmcproductionstm@gmail.com";  // email
-      }
+      const payload = {
+        contact,
+        message,
+        method,
+      };
 
-      fetch(`https://formsubmit.co/ajax/${destinationEmail}`, {
+      const response = await fetch("YOUR_GOOGLE_SCRIPT_DEPLOYED_URL", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          contact: userContact,
-          message: userMessage,
-          _captcha: false
-        })
-      })
-      .then(response => {
-        if (response.ok) {
-          document.getElementById("contactForm").style.display = "none";
-          document.getElementById("thankYou").style.display = "block";
-        } else {
-          alert("There was a problem sending your message.");
-        }
-      })
-      .catch(error => {
-        alert("Something went wrong. Try again later.");
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json" },
       });
+
+      if (response.ok) {
+        document.getElementById("thankYouMsg").style.display = "block";
+        document.getElementById("contactForm").reset();
+        updateContactType();
+      }
     });
   </script>
 </body>
