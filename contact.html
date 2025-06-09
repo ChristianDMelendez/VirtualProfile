@@ -39,30 +39,15 @@
       margin-bottom: 10px;
     }
 
-    .popup-note {
-      display: none;
-      color: #ffcc00;
-      font-size: 0.85rem;
-      text-align: center;
-      margin-top: -10px;
-      margin-bottom: 10px;
-    }
-
     .contact-form {
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
 
-    .contact-row {
-      display: flex;
-      gap: 10px;
-    }
-
-    .contact-row input,
-    .contact-row select,
-    textarea,
-    button {
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form button {
       width: 100%;
       padding: 12px;
       font-size: 1rem;
@@ -73,12 +58,7 @@
       color: #00ffff;
     }
 
-    .contact-row select {
-      width: 130px;
-      background-color: #111;
-    }
-
-    button {
+    .contact-form button {
       background-color: #00ffff;
       color: #000;
       font-weight: bold;
@@ -86,7 +66,7 @@
       transition: background-color 0.3s ease;
     }
 
-    button:hover {
+    .contact-form button:hover {
       background-color: #00cccc;
     }
 
@@ -111,18 +91,16 @@
 <body>
   <div class="container">
     <h2>Send Me a Message</h2>
-    <p class="note">Please choose to send via Email or Text.</p>
+    <p class="note">This message will be sent to my email.</p>
 
-    <form id="contactForm" class="contact-form">
-      <div class="contact-row">
-        <input type="text" id="contactField" name="contact" placeholder="Your Email" required />
-        <select id="method" name="method" onchange="updateContactType()">
-          <option value="email">Email</option>
-          <option value="text">Text</option>
-        </select>
-      </div>
-      <p class="popup-note" id="textNote">* Enter number with area code and no dashes</p>
-      <textarea name="message" id="messageField" placeholder="Your Message" rows="6" required></textarea>
+    <form class="contact-form" action="https://formsubmit.co/dmcproductionstm@gmail.com" method="POST" onsubmit="showThankYou(); return true;">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="box">
+      <input type="hidden" name="_subject" value="New Message from Website">
+      <input type="hidden" name="_autoresponse" value="Thanks for reaching out! I’ll reply as soon as I can.">
+
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
       <button type="submit">Send</button>
     </form>
 
@@ -132,53 +110,11 @@
   </div>
 
   <script>
-    function updateContactType() {
-      const method = document.getElementById("method").value;
-      const input = document.getElementById("contactField");
-      const note = document.getElementById("textNote");
-
-      if (method === "text") {
-        input.placeholder = "Your Phone Number";
-        note.style.display = "block";
-      } else {
-        input.placeholder = "Your Email";
-        note.style.display = "none";
-      }
+    function showThankYou() {
+      setTimeout(() => {
+        document.getElementById("thankYouMsg").style.display = "block";
+      }, 500);
     }
-
-    document.getElementById("contactForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const method = document.getElementById("method").value;
-      let contact = document.getElementById("contactField").value.trim();
-      const message = document.getElementById("messageField").value;
-
-      // Route contact to email or SMS gateway
-      if (method === "text") {
-        contact = contact.replace(/[^0-9]/g, "") + "@tmomail.net";
-      }
-
-      const payload = { contact, message };
-
-      try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbwR61ZIBS-DzjOFtjPhoJkQ8AP10sJHvWQq-be0cEX5JELxAJEGyY6ZmE9Xxu-LBYw6/exec", {
-          method: "POST",
-          body: JSON.stringify(payload),
-          headers: { "Content-Type": "application/json" },
-        });
-
-        if (response.ok) {
-          document.getElementById("thankYouMsg").style.display = "block";
-          document.getElementById("contactForm").reset();
-          updateContactType();
-        } else {
-          alert("Something went wrong. Please try again.");
-        }
-      } catch (error) {
-        console.error("Error:", error);
-        alert("Failed to send. Check your internet or try again later.");
-      }
-    });
   </script>
 </body>
 </html>
