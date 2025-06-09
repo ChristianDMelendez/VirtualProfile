@@ -116,19 +116,13 @@
 
     .thank-you {
       display: none;
-      text-align: center;
       margin-top: 20px;
       padding: 20px;
-      background-color: #000;
+      background-color: #002f2f;
+      border-radius: 8px;
       color: #00ffff;
-      border: 2px solid #00ffff;
-      border-radius: 10px;
-      animation: fadeIn 0.5s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
     }
   </style>
 </head>
@@ -136,8 +130,7 @@
   <div class="container">
     <h2>Send Me a Message</h2>
     <p class="note">Please choose whether to send via Email or Text.</p>
-
-    <form class="contact-form" action="https://formsubmit.co/ajax/dmcproductionstm@gmail.com" method="POST" id="contactForm">
+    <form class="contact-form" id="contactForm" method="POST">
       <input type="hidden" name="_captcha" value="false">
       <div class="contact-row">
         <input type="email" id="contactField" name="contact" placeholder="Your Email" required />
@@ -152,48 +145,54 @@
     </form>
 
     <div class="thank-you" id="thankYouCard">
-      <h3>Thank you!</h3>
-      <p>Your message has been sent successfully.</p>
+      ✅ Your message has been sent. Thank you!
     </div>
   </div>
 
   <script>
-    function updateContactType() {
-      const method = document.getElementById("method").value;
-      const input = document.getElementById("contactField");
-      const note = document.getElementById("textNote");
+    const form = document.getElementById("contactForm");
+    const input = document.getElementById("contactField");
+    const method = document.getElementById("method");
+    const textNote = document.getElementById("textNote");
+    const thankYouCard = document.getElementById("thankYouCard");
 
-      if (method === "text") {
+    function updateContactType() {
+      if (method.value === "text") {
         input.type = "tel";
         input.placeholder = "Your Phone Number";
-        note.style.display = "block";
+        textNote.style.display = "block";
       } else {
         input.type = "email";
         input.placeholder = "Your Email";
-        note.style.display = "none";
+        textNote.style.display = "none";
       }
     }
 
-    document.getElementById("contactForm").addEventListener("submit", function (e) {
+    form.addEventListener("submit", function (e) {
       e.preventDefault();
-      const form = e.target;
 
-      fetch(form.action, {
+      let action = "https://formsubmit.co/";
+      action += method.value === "email"
+        ? "dmcproductionstm@gmail.com"
+        : "8325909418@tmomail.net";
+
+      form.action = action;
+
+      fetch(action, {
         method: "POST",
-        body: new FormData(form),
         headers: {
-          'Accept': 'application/json'
-        }
-      })
-      .then(response => {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(new FormData(form)).toString(),
+      }).then(response => {
         if (response.ok) {
-          form.style.display = "none";
-          document.getElementById("thankYouCard").style.display = "block";
-        } else {
-          alert("Something went wrong. Please try again.");
+          thankYouCard.style.display = "block";
+          form.reset();
+          textNote.style.display = "none";
         }
-      })
-      .catch(error => alert("Error sending message: " + error));
+      }).catch(err => {
+        alert("There was a problem sending your message.");
+      });
     });
   </script>
 </body>
