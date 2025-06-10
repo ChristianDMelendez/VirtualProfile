@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #000 50%, #1a1a1a 50%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .portfolio-container {
+      max-width: 900px;
+      width: 100%;
+      background-color: #111;
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #00ffff;
+    }
+
+    .intro-text {
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+
+    .projects {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .project {
+      background: #000;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 5px solid #00ffff;
+      text-align: left;
+    }
+
+    .project h3 {
+      margin: 0 0 10px;
+      color: #00ffff;
+    }
+
+    .project p {
+      margin: 0;
+      color: #bbb;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        background: #000;
+      }
+
+      .portfolio-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="portfolio-container">
+    <h1>My Portfolio</h1>
+    <p class="intro-text">Explore some of my featured work below.</p>
+
+    <div class="projects">
+      <div class="project">
+        <h3>Project Title 1</h3>
+        <p>Short description of what this project is about. You can include tools or technologies used.</p>
+      </div>
+      <div class="project">
+        <h3>Project Title 2</h3>
+        <p>Another example project. Add as many as you like and style each uniquely later!</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
