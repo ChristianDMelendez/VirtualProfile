@@ -51,20 +51,21 @@
     }
 
     .resume-container {
-      width: 100%;
-      height: calc(100vh - 150px);
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
+      height: calc(100vh - 150px);
+      width: 100%;
       z-index: 5;
     }
 
     iframe {
-      width: 860px;
+      width: 1000px;
       height: 100%;
       border: none;
       z-index: 10;
+      position: relative;
     }
 
     #backBtn {
@@ -82,32 +83,31 @@
       z-index: 1000;
     }
 
-    /* 🔲 HOLE-PUNCH OVERLAY WITH 50/50 SPLIT */
+    /* FULLSCREEN 50/50 MASK WITH CUTOUT */
     .overlay-mask {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
+      background: linear-gradient(to right, #000 50%, #1a1a1a 50%);
       z-index: 999;
       pointer-events: none;
-      background: linear-gradient(to right, #000000 50%, #1a1a1a 50%);
       clip-path: polygon(
         0 0,
         0 100%,
-        calc((100vw - 860px) / 2) 100%,
-        calc((100vw - 860px) / 2) 0,
-        calc((100vw + 860px) / 2) 0,
-        calc((100vw + 860px) / 2) 100%,
+        calc((100vw - 1000px)/2) 100%,
+        calc((100vw - 1000px)/2) 0,
+        calc((100vw + 1000px)/2) 0,
+        calc((100vw + 1000px)/2) 100%,
         100% 100%,
         100% 0
       );
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1000px) {
       iframe {
-        width: 100%;
-        height: 100%;
+        width: 100vw;
       }
 
       .overlay-mask {
@@ -125,7 +125,7 @@
   <h1>My Résumé</h1>
 
   <div class="resume-container">
-    <iframe 
+    <iframe
       src="https://www.canva.com/design/DAGp4A6CZ94/GEOEW2FZ7DQ_P-OvRwNtzw/view?embed"
       title="Christian Melendez Résumé"
       allowfullscreen>
