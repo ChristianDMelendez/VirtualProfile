@@ -13,29 +13,30 @@
       font-family: 'Segoe UI', sans-serif;
     }
 
-    /* Top banner full-width, dark blue */
     .banner-wrapper {
       background-color: #0d1216;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 80px;
+      padding-top: 15px;
+      padding-bottom: 10px;
     }
 
-    /* Centered black bar exactly 860px wide */
     .banner-inner {
-      background-color: #000000;
+      background-color: black;
       width: 860px;
-      height: 100%;
+      height: 50px; /* 🔥 THE TRIMMED HEIGHT */
       display: flex;
       align-items: center;
+      justify-content: center;
       padding: 0 20px;
       box-sizing: border-box;
     }
 
     .logo-icon {
-      width: 40px;
-      margin-right: 10px;
+      width: 32px;
+      height: auto;
+      margin-right: 8px;
     }
 
     header {
@@ -47,7 +48,7 @@
     header span {
       color: white;
       font-weight: bold;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
 
     h1 {
@@ -72,7 +73,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: calc(100vh - 150px);
+      height: calc(100vh - 140px);
       position: relative;
       z-index: 1;
     }
@@ -109,7 +110,7 @@
 </head>
 <body>
 
-  <!-- ✅ Proper fixed banner -->
+  <!-- 🔥 TRIMMED BANNER TO YOUR EXACT SPEC -->
   <div class="banner-wrapper">
     <div class="banner-inner">
       <header>
