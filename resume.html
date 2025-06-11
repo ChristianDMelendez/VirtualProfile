@@ -5,35 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Résumé</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      width: 100%;
+      background-color: #1e252d; /* Canva’s background color */
       font-family: 'Segoe UI', sans-serif;
-      background-color: #1e252d; /* matches Canva */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
 
     header {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 20px 0 10px;
       justify-content: center;
-      width: 100%;
+      padding: 20px 0 10px;
       z-index: 2;
+      position: relative;
     }
 
     .logo-icon {
       width: 40px;
-      height: auto;
+      margin-right: 10px;
     }
 
     header span {
@@ -44,30 +35,29 @@
 
     h1 {
       color: #00ffff;
-      font-size: 1.8rem;
       text-align: center;
-      margin: 10px 0 20px;
-      z-index: 2;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
     }
 
-    .center-strip {
-      background-color: #000000;
-      width: 100%;
-      max-width: 1200px;
-      height: calc(100vh - 150px);
-      position: absolute;
-      top: 150px;
-      z-index: 1;
+    .center-background {
+      background-color: black;
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 860px;
+      height: 100vh;
+      z-index: 0;
     }
 
-    .resume-container {
-      z-index: 5;
-      width: 100%;
+    .iframe-container {
       display: flex;
       justify-content: center;
       align-items: center;
       height: calc(100vh - 150px);
       position: relative;
+      z-index: 1;
     }
 
     iframe {
@@ -92,17 +82,15 @@
     }
 
     @media (max-width: 900px) {
+      .center-background,
       iframe {
-        width: 95vw;
-      }
-
-      .center-strip {
-        display: none;
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
+
   <header>
     <img src="logo.png" alt="Silent Industries Logo" class="logo-icon" />
     <span>SILENT INDUSTRIES</span>
@@ -110,18 +98,19 @@
 
   <h1>My Résumé</h1>
 
-  <!-- This is the black stripe section -->
-  <div class="center-strip"></div>
+  <!-- The black center strip that matches the resume width -->
+  <div class="center-background"></div>
 
-  <!-- This is the actual resume iframe -->
-  <div class="resume-container">
+  <!-- Resume embed sits right on top -->
+  <div class="iframe-container">
     <iframe 
       src="https://www.canva.com/design/DAGp4A6CZ94/GEOEW2FZ7DQ_P-OvRwNtzw/view?embed"
-      title="Christian Melendez Résumé"
-      allowfullscreen>
+      allowfullscreen 
+      title="Christian Melendez Résumé">
     </iframe>
   </div>
 
+  <!-- Back button -->
   <a id="backBtn" href="index.html">← Back to Home</a>
 
   <script>
