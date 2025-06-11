@@ -9,22 +9,44 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      background-color: #0d1216; /* 💯 TRUTH — your Canva exact background */
+      background-color: #0d1216;
       font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* Top Banner Wrapper */
+    .banner-wrapper {
+      position: relative;
+      background-color: #0d1216; /* Canva background */
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+    }
+
+    /* Black strip behind logo/header */
+    .banner-center {
+      background-color: #000;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 100%;
+      width: 860px;
+      z-index: 1;
     }
 
     header {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px 0 10px;
-      z-index: 2;
+      gap: 10px;
       position: relative;
+      z-index: 2;
     }
 
     .logo-icon {
       width: 40px;
-      margin-right: 10px;
     }
 
     header span {
@@ -37,7 +59,8 @@
       color: #00ffff;
       text-align: center;
       font-size: 1.8rem;
-      margin-bottom: 20px;
+      margin: 20px 0;
+      z-index: 2;
     }
 
     .center-background {
@@ -83,6 +106,7 @@
 
     @media (max-width: 900px) {
       .center-background,
+      .banner-center,
       iframe {
         width: 100%;
       }
@@ -91,17 +115,19 @@
 </head>
 <body>
 
-  <header>
-    <img src="logo.png" alt="Silent Industries Logo" class="logo-icon" />
-    <span>SILENT INDUSTRIES</span>
-  </header>
+  <!-- Banner area split style -->
+  <div class="banner-wrapper">
+    <div class="banner-center"></div>
+    <header>
+      <img src="logo.png" alt="Silent Industries Logo" class="logo-icon" />
+      <span>SILENT INDUSTRIES</span>
+    </header>
+  </div>
 
   <h1>My Résumé</h1>
 
-  <!-- Black center stripe under the resume -->
   <div class="center-background"></div>
 
-  <!-- Resume embed -->
   <div class="iframe-container">
     <iframe 
       src="https://www.canva.com/design/DAGp4A6CZ94/GEOEW2FZ7DQ_P-OvRwNtzw/view?embed"
@@ -110,7 +136,6 @@
     </iframe>
   </div>
 
-  <!-- Back to Home -->
   <a id="backBtn" href="index.html">← Back to Home</a>
 
   <script>
@@ -122,5 +147,6 @@
       document.getElementById('backBtn').style.display = 'none';
     }
   </script>
+
 </body>
 </html>
