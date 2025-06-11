@@ -17,9 +17,6 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: #0d0d0d;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
 
     header {
@@ -29,6 +26,8 @@
       padding: 20px 0 10px;
       justify-content: center;
       width: 100%;
+      z-index: 20;
+      position: relative;
     }
 
     .logo-icon {
@@ -45,31 +44,73 @@
     h1 {
       color: #00ffff;
       font-size: 1.8rem;
-      margin: 0 0 20px;
       text-align: center;
+      margin: 10px 0 20px;
+      z-index: 20;
+      position: relative;
     }
 
     .resume-container {
-      flex: 1;
       width: 100%;
-      height: 100%;
-      padding: 0 20px 20px;
+      height: calc(100vh - 150px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 5;
     }
 
-    .resume-container iframe {
-      width: 100%;
+    iframe {
+      width: 860px;
       height: 100%;
       border: none;
+      z-index: 10;
     }
 
-    @media (max-width: 768px) {
-      .resume-container {
-        padding: 0;
+    /* MASKS */
+    .side-mask {
+      position: fixed;
+      top: 0;
+      height: 100%;
+      z-index: 15;
+      pointer-events: none;
+    }
+
+    .left-mask {
+      left: 0;
+      width: calc((100vw - 860px) / 2);
+      background-color: #000000;
+    }
+
+    .right-mask {
+      right: 0;
+      width: calc((100vw - 860px) / 2);
+      background-color: #1a1a1a;
+    }
+
+    /* BACK BUTTON */
+    #backBtn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: #00ffff;
+      color: #000;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      text-decoration: none;
+      box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
+      z-index: 1000;
+    }
+
+    @media (max-width: 900px) {
+      iframe {
+        width: 95vw;
       }
 
-      header {
-        flex-direction: column;
-        text-align: center;
+      .left-mask, .right-mask {
+        display: none;
       }
     }
   </style>
@@ -83,23 +124,18 @@
   <h1>My Résumé</h1>
 
   <div class="resume-container">
-    <iframe src="resume.pdf" title="Christian Melendez Résumé"></iframe>
+    <iframe 
+      src="https://www.canva.com/design/DAGp4A6CZ94/U6_Ivm__59dNEkQCf1eYsg/view?embed"
+      allowfullscreen 
+      title="Christian Melendez Résumé">
+    </iframe>
   </div>
 
-  <a id="backBtn" href="index.html" style="
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    background: #00ffff;
-    color: #000;
-    padding: 10px 16px;
-    border-radius: 6px;
-    font-weight: bold;
-    font-size: 0.9rem;
-    text-decoration: none;
-    box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
-    z-index: 1000;
-  ">← Back to Home</a>
+  <!-- Side overlays -->
+  <div class="side-mask left-mask"></div>
+  <div class="side-mask right-mask"></div>
+
+  <a id="backBtn" href="index.html">← Back to Home</a>
 
   <script>
     if (
