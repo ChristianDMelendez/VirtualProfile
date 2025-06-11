@@ -67,28 +67,6 @@
       z-index: 10;
     }
 
-    /* Overlay mask */
-    .side-mask {
-      position: fixed;
-      top: 0;
-      height: 100%;
-      z-index: 999;
-      pointer-events: none;
-    }
-
-    .left-mask {
-      left: 0;
-      width: calc((100vw - 860px) / 2);
-      background-color: #000000;
-    }
-
-    .right-mask {
-      right: 0;
-      width: calc((100vw - 860px) / 2);
-      background-color: #1a1a1a;
-    }
-
-    /* Back button */
     #backBtn {
       position: fixed;
       top: 20px;
@@ -104,14 +82,36 @@
       z-index: 1000;
     }
 
-    @media (max-width: 900px) {
-      .left-mask, .right-mask {
-        display: none;
-      }
+    /* HOLE-PUNCH OVERLAY MAGIC 💥 */
+    .overlay-mask {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 999;
+      pointer-events: none;
+      background: linear-gradient(to right, #000000 50%, #1a1a1a 50%);
+      clip-path: polygon(
+        0 0,
+        0 100%,
+        calc((100vw - 860px) / 2) 100%,
+        calc((100vw - 860px) / 2) 0,
+        calc((100vw + 860px) / 2) 0,
+        calc((100vw + 860px) / 2) 100%,
+        100% 100%,
+        100% 0
+      );
+    }
 
+    @media (max-width: 900px) {
       iframe {
         width: 100%;
         height: 100%;
+      }
+
+      .overlay-mask {
+        display: none;
       }
     }
   </style>
@@ -132,11 +132,9 @@
     </iframe>
   </div>
 
-  <!-- Overlay sides -->
-  <div class="side-mask left-mask"></div>
-  <div class="side-mask right-mask"></div>
+  <!-- Overlay mask with transparent center window -->
+  <div class="overlay-mask"></div>
 
-  <!-- Back button -->
   <a id="backBtn" href="index.html">← Back to Home</a>
 
   <script>
