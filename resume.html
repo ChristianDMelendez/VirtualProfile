@@ -21,6 +21,48 @@
       z-index: 2;
     }
 
+    .banner-wrapper {
+      background-color: #0d1216;
+      height: 80px;
+      width: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .banner-center {
+      background-color: #000000;
+      width: 860px;
+      height: 80px;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo-icon {
+      width: 40px;
+      margin-right: 10px;
+    }
+
+    header span {
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
     .center-background {
       background-color: #000000;
       position: fixed;
@@ -73,22 +115,12 @@
 </head>
 <body>
 
-  <!-- 🔥 Trimmed top banner with Canva bg + centered black panel -->
-  <div style="background-color: #0d1216; height: 80px; position: relative;">
-    <div style="
-      background-color: #000;
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 860px;
-      height: 100%;
-      z-index: 1;
-    "></div>
-
-    <header style="display: flex; justify-content: center; align-items: center; position: relative; z-index: 2;">
-      <img src="logo.png" alt="Silent Industries Logo" style="width: 40px; margin-right: 10px;" />
-      <span style="color: white; font-weight: bold; font-size: 1.2rem;">SILENT INDUSTRIES</span>
+  <!-- 🧠 Banner: trimmed to resume width, no overflow -->
+  <div class="banner-wrapper">
+    <div class="banner-center"></div>
+    <header>
+      <img src="logo.png" alt="Silent Industries Logo" class="logo-icon" />
+      <span>SILENT INDUSTRIES</span>
     </header>
   </div>
 
