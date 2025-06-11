@@ -21,35 +21,33 @@
       z-index: 2;
     }
 
+    /* The full-width wrapper */
     .banner-wrapper {
+      width: 100%;
       background-color: #0d1216;
-      height: 80px;
       display: flex;
       justify-content: center;
-      align-items: center;
-      position: relative;
-      z-index: 2;
+      padding: 20px 0;
     }
 
+    /* This is the black strip that must ONLY be 860px wide */
     .banner-inner {
-      background-color: #000;
+      background-color: black;
       width: 860px;
-      height: 100%;
       display: flex;
-      align-items: center;
       justify-content: center;
-    }
-
-    .logo-icon {
-      width: 40px;
-      margin-right: 10px;
+      align-items: center;
+      padding: 10px 0;
     }
 
     header {
       display: flex;
       align-items: center;
-      justify-content: center;
-      z-index: 2;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      width: 40px;
     }
 
     header span {
@@ -110,7 +108,7 @@
 </head>
 <body>
 
-  <!-- ✅ Top banner centered and width locked -->
+  <!-- ✅ Fixed banner: only 860px wide black panel centered -->
   <div class="banner-wrapper">
     <div class="banner-inner">
       <header>
