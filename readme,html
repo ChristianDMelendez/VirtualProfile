@@ -1,1 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Christian Melendez // Portfolio Terminal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Courier New', monospace;
+      background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+      color: #00ffff;
+      padding: 40px;
+      animation: fadeIn 1.2s ease-in;
+    }
 
+    h1 {
+      font-size: 2.5em;
+      color: #00ffcc;
+      text-shadow: 0 0 10px #00ffff;
+      animation: flicker 2s infinite;
+    }
+
+    h2, h3 {
+      color: #ffffff;
+      border-bottom: 1px solid #00ffff;
+      padding-bottom: 5px;
+    }
+
+    p, li {
+      color: #d0f0ff;
+      line-height: 1.6;
+    }
+
+    code {
+      background: #111;
+      color: #0ff;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    pre {
+      background: #111;
+      padding: 12px;
+      border-left: 4px solid #00ffff;
+      overflow-x: auto;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .quote {
+      font-style: italic;
+      color: #88ffff;
+      margin-top: 10px;
+    }
+
+    .divider {
+      border-top: 1px dashed #00ffff;
+      margin: 30px 0;
+    }
+
+    .terminal-title {
+      font-size: 1.2em;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧠 Christian Melendez // Portfolio Terminal</h1>
+  <p class="terminal-title">> Initializing access...</p>
+  <p>Welcome to the digital résumé of <strong>Christian Melendez</strong> — systems designer, tech artisan, and creative engineer.<br>
+  You’ve just entered my professional universe. <strong>Proceed with respect.</strong> 🛸✨</p>
+
+  <div class="divider"></div>
+
+  <h2>🛠️ Project Overview</h2>
+  <p>This site is a handcrafted fusion of:</p>
+  <ul>
+    <li>✨ Code</li>
+    <li>📖 Story</li>
+    <li>💡 Vision</li>
+  </ul>
+  <p>Every element was personally written, styled, and structured by me.<br>
+  No templates. No shortcuts. Just raw skill and clean design.</p>
+  <p class="quote">“If this site had fingerprints, they'd all be mine.”</p>
+
+  <div class="divider"></div>
+
+  <h2>🔒 Intellectual Rights</h2>
+  <p>Although this project is hosted publicly for visibility purposes, it is <strong>not open-source</strong>.<br>
+  All code, content, layout, and personal details are protected intellectual property.</p>
+
+  <h3>🛑 You may <strong>NOT</strong>:</h3>
+  <pre><code>- Copy or clone any part of the site
+- Use résumé content, design, or layout
+- Rebrand or redistribute without permission</code></pre>
+
+  <h3>✅ You MAY:</h3>
+  <pre><code>/* Explore, get inspired, and reach out respectfully */</code></pre>
+
+  <div class="divider"></div>
+
+  <h2>🤝 Contact Protocol</h2>
+  <ul>
+    <li>📧 <strong>Email:</strong> <a href="mailto:dmcproductionstm@gmail.com" style="color:#00ffff;">dmcproductionstm@gmail.com</a></li>
+    <li>📞 <strong>Phone:</strong> 832-590-9418</li>
+    <li>🔗 <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/christian-melendez-461278214" style="color:#00ffff;">linkedin.com/in/christian-melendez</a></li>
+  </ul>
+  <p><em>Business inquiries, collaborations, and genuine curiosity welcome.<br>
+  Bots, thieves, and weird vibes — get bounced by the firewall. 🧱🔥</em></p>
+
+  <div class="divider"></div>
+
+  <h2>⚡ Engineered Energy</h2>
+  <pre><code>Built with:
+- Dark mode always on
+- Hours of perseverance
+- Smooth animations
+- Real story, real code</code></pre>
+
+  <p class="quote">“Your story is the code — write it your way.”</p>
+
+  <div class="divider"></div>
+
+  <p style="color:#999;">© 2025 Christian Melendez // All Rights Reserved<br>
+  Crafted under the alias <strong>Chriz-Chen</strong><br>
+  Powered by <strong>Silent Industries™</strong></p>
+</body>
+</html>
