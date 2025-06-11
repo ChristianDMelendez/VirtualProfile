@@ -13,48 +13,6 @@
       font-family: 'Segoe UI', sans-serif;
     }
 
-    /* Top Banner Wrapper */
-    .banner-wrapper {
-      position: relative;
-      background-color: #0d1216; /* Canva background */
-      height: 80px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 2;
-    }
-
-    /* Black strip behind logo/header */
-    .banner-center {
-      background-color: #000;
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 100%;
-      width: 860px;
-      z-index: 1;
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .logo-icon {
-      width: 40px;
-    }
-
-    header span {
-      color: #ffffff;
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-
     h1 {
       color: #00ffff;
       text-align: center;
@@ -115,12 +73,22 @@
 </head>
 <body>
 
-  <!-- Banner area split style -->
-  <div class="banner-wrapper">
-    <div class="banner-center"></div>
-    <header>
-      <img src="logo.png" alt="Silent Industries Logo" class="logo-icon" />
-      <span>SILENT INDUSTRIES</span>
+  <!-- 🔥 Trimmed top banner with Canva bg + centered black panel -->
+  <div style="background-color: #0d1216; height: 80px; position: relative;">
+    <div style="
+      background-color: #000;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 860px;
+      height: 100%;
+      z-index: 1;
+    "></div>
+
+    <header style="display: flex; justify-content: center; align-items: center; position: relative; z-index: 2;">
+      <img src="logo.png" alt="Silent Industries Logo" style="width: 40px; margin-right: 10px;" />
+      <span style="color: white; font-weight: bold; font-size: 1.2rem;">SILENT INDUSTRIES</span>
     </header>
   </div>
 
